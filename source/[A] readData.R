@@ -2,7 +2,7 @@
 
 jur <- read.table("dataset/Dados_Jurumirim/vazao_SAR_JURUMIRIM.txt", head=T)
 jur$Data <- as.Date(jur$Data,format="%Y-%m-%d" )
-jur <- jur %>% filter(Data>= as.Date("2011-01-01") & Data <= as.Date("2012-12-31"))
+jur <- jur %>% filter(Data>= as.Date("2011-01-01") & Data <= .end)
 names(jur)[7] <- "Vol_or"
 
 # Calculando os volumes (hm³) ---------------------------------------------
@@ -29,7 +29,7 @@ jurP <- rbind(read.table("dataset/Dados_Jurumirim/PT_SS_AR1.txt", head=T)[,c(1,2
 )
 
 jurP$Data <- as.Date(jurP$Data,format="%Y-%m-%d" )
-jurP <- jurP %>% filter(Data>= as.Date("2011-01-01") & Data <= as.Date("2012-12-31"))
+jurP <- jurP %>% filter(Data>= as.Date("2011-01-01") & Data <= .end)
 
 
 

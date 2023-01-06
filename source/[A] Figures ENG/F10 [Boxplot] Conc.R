@@ -1,0 +1,36 @@
+.df <- df_wide_A %>%
+  select(Data, Cenario, res, C_in, C_out) %>%
+  filter(Data>= .start & Data <= .end) %>%
+  gather(key="Var",value = "Valor", c(4:5), na.rm=T) 
+
+plot <- ggplot()+
+  geom_rect(aes(xmin = -Inf, ymin = 0.010,
+                xmax = Inf,   ymax = 0.020, 
+                fill = "Class 1"), 
+                alpha = 0.6)+
+  geom_rect(aes(xmin = -Inf, ymin = 0.020,
+                xmax = Inf,   ymax = 0.030, 
+                fill = "Class 2"), 
+                alpha = 0.6)+
+  geom_rect(aes(xmin = -Inf, ymin = 0.030,
+                xmax = Inf,   ymax = 0.050, 
+                fill = "Class 3"), 
+                alpha = 0.6)+
+  geom_rect(aes(xmin = -Inf, ymin = 0.050,
+                xmax = Inf,   ymax = 1, 
+                fill = "Class 4"), 
+                alpha = 0.6)+
+  scale_fill_manual(values= c("Class 1"="#BDD8FF",
+                              "Class 2"="#B4FF9E",
+                              "Class 3"="#EEBDFF",
+                              "Class 4"="#FFF79F"), 
+                    name=" ")+
+  geom_boxplot(data = .df, aes(x=Cenario, y=Valor, color=Var ), fill= "#ffffff", alpha=0.6)+
+  scale_y_log10(limits = c(0.01,1), expand=c(0,0))+
+  scale_color_manual(name= "",labels = c("Input","Output"),values=c("#FF7664","#000000"))+
+  labs(title = " ", x="", y = bquote("Phosphorus" ~~ "("~"mg.L" ^ "-1"~")"))+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position="right")
+
+
+ggsave(filename = "img/[A] Figures ENG/[Boxplot] Concentration (Figure 10).png", plot= plot, device = "png", width = 25, height = 18, units = "cm")

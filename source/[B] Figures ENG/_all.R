@@ -1,3 +1,4 @@
+Sys.setlocale("LC_TIME", "English")
 source("source/[B] Figures ENG/[PieCharts] TSI.R", encoding = "UTF-8")
 source("source/[B] Figures ENG/[TimeSeries] conc comparison.R", encoding = "UTF-8")
 source("source/[B] Figures ENG/[TimeSeries] load comparison.R", encoding = "UTF-8")

@@ -11,7 +11,7 @@ jur <-
     jur %>% 
     filter(
         Data>= as.Date("2011-01-01") & 
-        Data <= as.Date("2012-12-31")
+        Data <= .end
     )
 names(jur)[7] <- "Vol_or"
 
@@ -29,7 +29,7 @@ jurP <-
     jurP %>% 
     filter(
         Data>= as.Date("2011-01-01") &
-        Data <= as.Date("2012-12-31")
+        Data <= .end
     )
 
 # Coeficientes CAV

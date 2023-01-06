@@ -1,15 +1,22 @@
-df_wide <- df_results
-write.csv2(df_wide, "csv/Reator Único - Resultados.csv")
+df_results_A$Cenario<- factor(df_results_A$Cenario,
+    levels = c("B12",
+               "T25",
+               "A25",
+               "T35",
+               "A35"))
+               
+df_wide_A <- df_results_A
+write.csv2(df_wide_A, "csv/Reator Único - Resultados.csv")
 
 # Formatação da tabela de resultados para geração de gráficos
-df_results <- df_results %>%
+df_results_A <- df_results_A %>%
     select(-P,-Cota,-k,-set_v,-Vol,-As,-i,-t, -Q_Vertida, -Q_Turb, -NAs_calc) %>%
     gather(key = "Variable", value = "Valor", -Data, -Q_Aflu, -Q_Deflu, -res,  -Cenario, C_in, C_out) 
 
 # Cálculo do IET
-df_results<-df_results%>% mutate(TSI=NA)
-df_results$TSI<- sapply(df_results$Valor, FUN= TSI)
-df_results$TSI<- factor(df_results$TSI,
+df_results_A<-df_results_A%>% mutate(TSI=NA)
+df_results_A$TSI<- sapply(df_results_A$Valor, FUN= TSI)
+df_results_A$TSI<- factor(df_results_A$TSI,
     levels = c("Hipereutrófico",
                "Supereutrófico",
                "Eutrófico",
@@ -18,11 +25,11 @@ df_results$TSI<- factor(df_results$TSI,
                "Ultraoligotrófico"))
 
 # Verificação classe 2 CONAMA
-df_results<-df_results%>% mutate(classe2=NA)
-df_results$classe2<- sapply(df_results$Valor,classe2)
+df_results_A<-df_results_A%>% mutate(classe2=NA)
+df_results_A$classe2<- sapply(df_results_A$Valor,classe2)
 
 
-df_results$Cenario<- factor(df_results$Cenario,
+df_results_A$Cenario<- factor(df_results_A$Cenario,
     levels = c("B12",
                "T25",
                "A25",

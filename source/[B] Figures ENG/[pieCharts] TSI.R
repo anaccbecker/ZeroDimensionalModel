@@ -1,7 +1,7 @@
 
 # Setores - ENTRADA (Inglês) ---------------------------------------
-plot <- df_results %>%
-  filter(Data>= as.Date("2012-01-01") & Data <= as.Date("2012-12-31"))%>%
+plot <- df_results_B %>%
+  filter(Data>= .start & Data <= .end)%>%
   filter(Variable=="C_in")%>%
   ggplot(aes(x=1, fill=TSI))+
   geom_bar()+
@@ -33,13 +33,13 @@ plot <- df_results %>%
   labs(title="Trophic State Index (Inflow)")
 
 ggsave(filename = "img/[B] Figures ENG/[pieCharts] TSI Input.png", plot= plot, device = "png", width = 30, height = 18, units = "cm")
-table <- df_results %>%  filter(Data>= as.Date("2012-01-01") & Data <= as.Date("2012-12-31"))%>%filter(Variable=="C_in")%>% group_by(TSI,Setor,Cenario) %>% count(TSI) %>% spread(key = "Cenario", value =  "n")
+table <- df_results_B %>%  filter(Data>= .start & Data <= .end)%>%filter(Variable=="C_in")%>% group_by(TSI,Setor,Cenario) %>% count(TSI) %>% spread(key = "Cenario", value =  "n")
 #write.csv2(table, file = "../output/setores/[Setores] IET ENTRADA.csv")
 
 
 # Setores - SAÍDA (Inglês) ------------------------------------------
-plot <- df_results %>%
-  filter(Data>= as.Date("2012-01-01") & Data <= as.Date("2012-12-31"))%>%
+plot <- df_results_B %>%
+  filter(Data>= .start & Data <= .end)%>%
   filter(Variable=="C_out")%>%
   ggplot(aes(x=1, fill=TSI))+
   geom_bar()+
@@ -71,5 +71,5 @@ plot <- df_results %>%
   labs(title="Trophic State Index (Outflow)")
 
 ggsave(filename = "img/[B] Figures ENG/[pieCharts] TSI Output.png", plot= plot, device = "png", width = 30, height = 18, units = "cm")
-table<- df_results%>%  filter(Data>= as.Date("2012-01-01") & Data <= as.Date("2012-12-31"))%>% filter(Variable=="C_out")%>% group_by(TSI,Setor,Cenario) %>% count(TSI) %>% spread(key = "Cenario", value =  "n")
+table<- df_results_B %>%  filter(Data>= .start & Data <= .end)%>% filter(Variable=="C_out")%>% group_by(TSI,Setor,Cenario) %>% count(TSI) %>% spread(key = "Cenario", value =  "n")
 #write.csv2(table, file = "../output/setores/[Setores] IET SAÍDA.csv")
