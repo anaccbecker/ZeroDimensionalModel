@@ -52,7 +52,7 @@ plot <- df_results_B %>%
                     name="Trophic State Index")+
   geom_line(aes(x= Data, y=Valor, color=Variable), size=0.3)
 
-ggsave(filename = "img/[B] Figures ENG/[TimeSeries] TSI B12.png", plot= plot, device = "png", width = 22, height = 13, units = "cm")
+ggsave(filename = "img/[B] Figures ENG/[TimeSeries] TSI B12.png", plot= plot, device = "png", width = 16, height = 10, units = "cm")
 
 
 
@@ -88,7 +88,7 @@ plot <-   .df  %>%
   theme_bw()+
   scale_color_manual(name= "", labels = c("Input", "Output"),values=c("#FF7664","#000000"))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position="right")+
-  geom_line(aes(x= Data, y=Valor, color=Variable), size=0.3)
+  geom_line(aes(x= Data, y=Valor, color=Variable), size=0.1)
   
 
-ggsave(filename = "img/[B] Figures ENG/[TimeSeries] CONAMA B12.png", plot= plot, device = "png", width = 22, height = 15, units = "cm")
+ggsave(filename = "img/[B] Figures ENG/[TimeSeries] CONAMA B12.png", plot= plot, device = "png", width = 16, height = 16, units = "cm")

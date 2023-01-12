@@ -29,4 +29,4 @@ plot <- df_vazoes_B%>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position="top")
 
 plot
-ggsave(filename = "img/[B] Figures ENG/[TimeSeries] flow.png", plot= plot, device = "png", width = 22, height = 13, units = "cm")
+ggsave(filename = "img/[B] Figures ENG/[TimeSeries] flow.png", plot= plot, device = "png", width = 16, height = 10, units = "cm")

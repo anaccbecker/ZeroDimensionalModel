@@ -37,15 +37,30 @@ comp_sector$model <- factor(comp_sector$model, levels = c( "Model B", "Delft3D")
 
 # Desvio
 comp2 <- rbind(
-    df_results_A %>% filter(Variable=="C_out") %>% select(-TSI, -classe2,-res,-Q_Aflu,-Q_Deflu,  -Variable)%>% mutate(model="Model A"),
+    df_results_A %>% filter(Variable=="C_out") %>% select(-TSI, -classe2,-res,-Q_Aflu,-Q_Deflu, -Variable)%>% mutate(model="Model A"),
     df_results_B %>% filter(Setor=="Setor 1" & Variable=="C_out" )%>% select(-TSI, -classe2,-res,-Q_Aflu,-Q_Deflu, -Setor, -Variable)%>% mutate(model="Model B"),
-    delft %>% filter( Setor=="Setor 1") %>% select(Data, C_out, model, Cenario)%>% rename(Valor=C_out )
+    delft %>% filter(Setor=="Setor 1") %>% select(Data, C_out, model, Cenario)%>% rename(Valor=C_out )
 )%>% 
-filter(Data>= .start & Data <= .end)%>%
-spread(key=model, 
-    value=Valor)
+filter(Data>= .start & Data <= .end) 
 
-write.csv2(comp2, "csv/[Comparison] deviation.csv")
+
+comp2 %>%
+group_by(Cenario,model)%>%
+summarise(Valor=mean(Valor))%>%
+spread(model, Valor)%>%
+write.csv2( "csv/[Comparison] average.csv", row.names=F)
+
+comp3<- comp2 %>%
+mutate(CM=paste(Cenario,"-",model)) %>%
+select(-Cenario,-model) %>%
+spread( CM,Valor)
+str(comp3)
+write.csv2(comp3, "csv/[Comparison] deviation.csv", row.names=F)
 
 head(comp2)
-comp2$Model A
+
+comp_sector_B12 %>%
+filter(model=="Model B") %>%
+group_by(Setor) %>%
+summarise(min= min(Valor), max= max(Valor))%>%
+write.csv2( "csv/[MaxMin] B12.csv", row.names=F)

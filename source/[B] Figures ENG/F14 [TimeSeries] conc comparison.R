@@ -41,3 +41,49 @@ plot <- df_results_B %>%
 
 ggsave(filename = "img/[B] Figures ENG/[TimeSeries] Sectors Comparison - Concentration.png", plot= plot, device = "png", width = 16, height = 14, units = "cm")
 
+
+
+df_results_B %>%
+  filter(
+    Data>= .start & 
+    Data <= .end &
+    Cenario=="B12" & 
+    Setor=="Setor 3" &
+    Variable=="C_out" &
+    Valor >= 0.3
+  )%>%
+  nrow()/366
+
+
+df_results_B %>%
+  filter(
+    Data>= .start & 
+    Data <= .end &
+    Cenario=="B12"  &
+    Variable=="C_out" &
+    Setor=="Setor 2"
+  )%>%
+  select(Valor)%>%
+  max()
+
+1-df_results_B %>%
+  filter(
+    Data>= .start & 
+    Data <= .end &
+    Cenario=="B12"  &
+    Variable=="C_out" &
+    Valor >= 0.1 & 
+    Setor=="Setor 4"
+  )%>%
+  nrow()/366
+
+df_results_B %>%
+  filter(
+    Data>= .start & 
+    Data <= .end &
+    Cenario=="B12"  &
+    Variable=="C_out" &
+    Setor=="Setor 1"
+  )%>%
+  select(Valor)%>%
+  max()

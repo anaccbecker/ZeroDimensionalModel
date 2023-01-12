@@ -33,4 +33,4 @@ plot <- ggplot()+
   theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position="right")
 
 
-ggsave(filename = "img/[A] Figures ENG/[Boxplot] Concentration (Figure 10).png", plot= plot, device = "png", width = 25, height = 18, units = "cm")
+ggsave(filename = "img/[A] Figures ENG/[Boxplot] Concentration (Figure 10).png", plot= plot, device = "png", width = 16, height = 10, units = "cm")
