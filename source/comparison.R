@@ -32,6 +32,13 @@ filter(Cenario=="B12"|Cenario=="A35")
 
 comp_sector$model <- factor(comp_sector$model, levels = c( "Model B", "Delft3D"))
 
+for (j %in% unique(comp_sector$Cenario)){
+    for (i %in% unique(comp_sector$Setor)){
+    randomizationTest(
+        filter(comp_sector, Setor==i & Cenario==j), 
+        model)
+    }
+}
 
 
 
